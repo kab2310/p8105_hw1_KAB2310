@@ -4,27 +4,48 @@ author: "Kamiah Brown"
 date: "2024-09-16"
 output: github_document
 ---
+## This is my submission for Homework 1. 
 
+##Set up
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggplot2)
+library(tibble)
 ```
+
+#Problem 1 -- 
+## I installed the package 'palmerpenguins' directly in the console. 
 
 ## R Markdown
+```{r penguins}
+data("penguins", package = "palmerpenguins")
+nrow(penguins)
+ncol(penguins)
+mean(pull(penguins, flipper_length_mm), na.rm = TRUE)
+```
+## The penguins dataset has 344 observations and 8 variables. 
+## The variables consist of the following: species, island, bill length, bill depth, flipper length, body mass, sex and year. There nrow is 344 and the ncol is 8. 
+## The mean flipper length is 200.9152. 
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+## Creating Scatterplot of Flipper Length vs. Bill Length
+```{r penguins}
+ggplot(data = penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) +
+  geom_point() +
+  labs(x = "Bill Length (mm)", y = "Flipper Length (mm)", title = "Scatterplot of Flipper Length vs Bill Length by Species") 
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
+##Saving scatterplot of Bill Length (mm) vs Flipper Length (mm)
+```{r}
+ggsave("Scatterplot of Bill Length (mm) vs Flipper Length (mm)", plot = scatter_plot, width = 7, height = 5)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+##Problem 2
+```{r random_samp}
+df = tibble(
+  random_samp = rnorm(10),
+  logical_vector = random_samp > 0,
+  character_vector = c("january","february", "march", "april", "may", "june", "july", "august", "september", "october"))
+factor_vector = factor(c("Level 1", "Level 2", "Level 3", "Level 1", "Level 2", "Level 3", "Level 1", "Level 2", "Level 3", "Level 1"))
+```
+
