@@ -43,20 +43,23 @@ ggsave("ScatterplotofBillLength(mm)vsFlipperLength(mm).pdf", width = 7, height =
 df = tibble(
   random_samp = rnorm(10),
   logical_vector = random_samp > 0,
-  character_vector = c("january","february", "march", "april", "may", "june", "july", "august", "september", "october"))
-factor_vector = factor(c("Level 1", "Level 2", "Level 3", "Level 1", "Level 2", "Level 3", "Level 1", "Level 2", "Level 3", "Level 1"))
+  character_vector = c("january","february", "march", "april", "may", "june", "july", "august", "september", "october"),
+factor_vector = factor(c("Level 1", "Level 2", "Level 3", "Level 1", "Level 2", "Level 3", "Level 1", "Level 2", "Level 3", "Level 1")))
 ```
 
 ##Mean of each variable
 ```{r}
 mean(pull(df, random_samp))
+mean(pull(df, logical_vector))
+mean(pull(df,character_vector))
+mean(pull(df,factor_vector))
 ```
 ## The mean of the variable 'random_samp' is 0.13.
 ## I can not pull the mean from variables 'factor_vector' or 'character_vector' because they are categorical.
 
 ```{r}
-numeric_logical = as.numeric(df, logical_vector)
-numeric_character = as.numeric(df, character_vector)
-numeric_factor = as.numeric(df, factor_vector)
+numeric_logical = as.numeric(pull(df, logical_vector))
+numeric_character = as.numeric(pull(df, character_vector))
+numeric_factor = as.numeric(pull(df, factor_vector))
 ```
 ##The characters do not have a numeric value; R cannot assign numbers to text therefore it shows as an error. This further proves why I am not able to pull the mean from variables 'character_vector' or 'factor_vector'. There is an error with logical_vector because it is already in a numeric form. The 'as.numeric' function in R is used to convert a character value into numeric value.
