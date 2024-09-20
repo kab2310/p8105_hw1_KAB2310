@@ -24,19 +24,19 @@ nrow(penguins)
 ncol(penguins)
 mean(pull(penguins, flipper_length_mm), na.rm = TRUE)
 ```
-## The penguins dataset has 344 observations and 8 variables. 
-## The variables consist of the following: species, island, bill length, bill depth, flipper length, body mass, sex and year. There nrow is 344 and the ncol is 8. 
-## The mean flipper length is 200.9152. 
+
+The penguins data set has 344 observations and 8 variables. 
+The variables consist of the following: species, island, bill length, bill depth, flipper length, body mass, sex and year. The size of dataset is `r nrow(penguins)`  and `r ncol(penguins)` .
+The mean  flipper length is `r mean(pull(penguins, flipper_length_mm), na.rm = TRUE)`. 
 
 ## Creating Scatterplot of Flipper Length vs. Bill Length 
-##Saving scatterplot of Bill Length (mm) vs Flipper Length (mm) --
+Saving scatterplot of Bill Length (mm) vs Flipper Length (mm) --
 ```{r }
 ggplot(data = penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) +
   geom_point() +
   labs(x = "Bill Length (mm)", y = "Flipper Length (mm)", title = "Scatterplot of Flipper Length vs Bill Length by Species") 
 ggsave("ScatterplotofBillLength(mm)vsFlipperLength(mm).pdf", width = 7, height = 5)
 ```
-
 
 ##Problem 2 -- 
 ```{r}
@@ -54,12 +54,12 @@ mean(pull(df, logical_vector))
 mean(pull(df,character_vector))
 mean(pull(df,factor_vector))
 ```
-## The mean of the variable 'random_samp' is 0.13.
-## I can not pull the mean from variables 'factor_vector' or 'character_vector' because they are categorical.
+The mean of the variable 'random_samp' is `r mean(pull(df, random_samp)) `.
+ I can not pull the mean from variables 'factor_vector' or 'character_vector' because they are categorical.
 
 ```{r}
 numeric_logical = as.numeric(pull(df, logical_vector))
 numeric_character = as.numeric(pull(df, character_vector))
 numeric_factor = as.numeric(pull(df, factor_vector))
 ```
-##The characters do not have a numeric value; R cannot assign numbers to text therefore it shows as an error. This further proves why I am not able to pull the mean from variables 'character_vector' or 'factor_vector'. There is an error with logical_vector because it is already in a numeric form. The 'as.numeric' function in R is used to convert a character value into numeric value.
+The characters do not have a numeric value; R cannot assign numbers to text therefore it shows as an error. This further proves why I am not able to pull the mean from variables 'character_vector' or 'factor_vector'. There is an error with logical_vector because it is already in a numeric form. The 'as.numeric' function in R is used to convert a character value into numeric value.
